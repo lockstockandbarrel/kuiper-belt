@@ -1,4 +1,3 @@
-# kuiper-belt
 # NAME
 
 **fpm(1)** - A Fortran package manager and build system
@@ -27,27 +26,27 @@ being used you need network connectivity to rebuild from scratch.
 
 Valid **fpm(1) subcommands are:**
 
--   build Compile the packages into the "build/" directory.
+- build Compile the packages into the "build/" directory.
 
--   new Create a new Fortran package directory with sample files.
+- new Create a new Fortran package directory with sample files.
 
--   update Update the project dependencies.
+- update Update the project dependencies.
 
--   run Run the local package binaries. Defaults to all binaries for
-    that release.
+- run Run the local package binaries. Defaults to all binaries for that
+  release.
 
--   test Run the tests.
+- test Run the tests.
 
--   help Alternate to the **--help switch for displaying help text.**
+- help Alternate to the **--help switch for displaying help text.**
 
--   list Display brief descriptions of all subcommands.
+- list Display brief descriptions of all subcommands.
 
--   install Install project.
+- install Install project.
 
--   clean Delete directories in the "build/" directory, except
-    dependencies. Prompts for confirmation to delete.
+- clean Delete directories in the "build/" directory, except
+  dependencies. Prompts for confirmation to delete.
 
--   publish Publish package to the registry.
+- publish Publish package to the registry.
 
 Their syntax is
 
@@ -74,99 +73,80 @@ Their syntax is
 **-C, --directory PATH** Change working directory to PATH before running
 any command
 
-****--profile** PROF**
+****--profile** PROF**  
+Selects the compilation profile for the build. Currently available
+profiles are "release" for high optimization and "debug" for full debug
+options. If **--flag is not specified the "debug" flags are the**
+default.
 
-:   Selects the compilation profile for the build. Currently available
-    profiles are "release" for high optimization and "debug" for full
-    debug options. If **--flag is not specified the "debug" flags are
-    the** default.
+****--no-prune****  
+Disable tree-shaking/pruning of unused module dependencies
 
-****--no-prune****
+****--compiler** NAME**  
+Specify a compiler name. The default is "gfortran" unless set by the
+environment variable FPM_FC.
 
-:   Disable tree-shaking/pruning of unused module dependencies
+****--c-compiler** NAME**  
+Specify the C compiler name. Automatically determined by default unless
+set by the environment variable FPM_CC.
 
-****--compiler** NAME**
+****--cxx-compiler** NAME**  
+Specify the C++ compiler name. Automatically determined by default
+unless set by the environment variable FPM_CXX.
 
-:   Specify a compiler name. The default is "gfortran" unless set by the
-    environment variable FPM_FC.
+****--archiver** NAME**  
+Specify the archiver name. Automatically determined by default unless
+set by the environment variable FPM_AR.
 
-****--c-compiler** NAME**
+****--flag****  
+FFLAGS selects compile arguments for the build, the default value is set
+by the FPM_FFLAGS environment variable. These are added to the profile
+options if **--profile is specified, else these** are added to the
+defaults. To override the defaults, use the keyword \[fortran\] in the
+manifest. Note object and .mod directory locations are always built in.
 
-:   Specify the C compiler name. Automatically determined by default
-    unless set by the environment variable FPM_CC.
+****--c-flag** CFLAGS**  
+selects compile arguments specific for C source in the build. The
+default value is set by the FPM_CFLAGS environment variable.
+**--cxx-flag CFLAGS selects compile arguments specific for C++ source in
+the** build. The default value is set by the FPM_CXXFLAGS environment
+variable.
 
-****--cxx-compiler** NAME**
+****--link-flag** LDFLAGS**  
+select arguments passed to the linker for the build. The default value
+is set by the FPM_LDFLAGS environment variable.
 
-:   Specify the C++ compiler name. Automatically determined by default
-    unless set by the environment variable FPM_CXX.
+****--list****  
+List candidates instead of building or running them. On the **fpm(1)
+command this shows a brief list of subcommands.**
 
-****--archiver** NAME**
+****--runner** CMD**  
+Provides a command to prefix program execution paths.
 
-:   Specify the archiver name. Automatically determined by default
-    unless set by the environment variable FPM_AR.
+**-- ARGS**  
+Arguments to pass to executables.
 
-****--flag****
+****--skip****  
+Delete directories in the build/ directory without prompting, but skip
+dependencies. Cannot be used together with **--all.**
 
-:   FFLAGS selects compile arguments for the build, the default value is
-    set by the FPM_FFLAGS environment variable. These are added to the
-    profile options if **--profile is specified, else these** are added
-    to the defaults. To override the defaults, use the keyword
-    \[fortran\] in the manifest. Note object and .mod directory
-    locations are always built in.
+****--all****  
+Delete directories in the build/ directory without prompting, including
+dependencies. Cannot be used together with **--skip.**
 
-****--c-flag** CFLAGS**
-
-:   selects compile arguments specific for C source in the build. The
-    default value is set by the FPM_CFLAGS environment variable.
-    **--cxx-flag CFLAGS selects compile arguments specific for C++
-    source in the** build. The default value is set by the FPM_CXXFLAGS
-    environment variable.
-
-****--link-flag** LDFLAGS**
-
-:   select arguments passed to the linker for the build. The default
-    value is set by the FPM_LDFLAGS environment variable.
-
-    ****--list****
-
-    :   List candidates instead of building or running them. On the
-        **fpm(1) command this shows a brief list of subcommands.**
-
-    ****--runner** CMD**
-
-    :   Provides a command to prefix program execution paths.
-
-    **-- ARGS**
-
-    :   Arguments to pass to executables.
-
-    ****--skip****
-
-    :   Delete directories in the build/ directory without prompting,
-        but skip dependencies. Cannot be used together with **--all.**
-
-    ****--all****
-
-    :   Delete directories in the build/ directory without prompting,
-        including dependencies. Cannot be used together with **--skip.**
-
-    ****--registry-cache****
-
-    :   Delete registry cache.
+****--registry-cache****  
+Delete registry cache.
 
 # VALID FOR ALL SUBCOMMANDS
 
-****--help****
+****--help****  
+Show help text and exit
 
-:   Show help text and exit
+****--verbose****  
+Display additional information when available
 
-****--verbose****
-
-:   Display additional information when available
-
-****--version****
-
-:   Show version information and exit.
+****--version****  
+Show version information and exit.
 
 @file You may replace the default options for the **fpm(1) command from
 a** file if your first options begin with @file. Initial options will
@@ -200,45 +180,37 @@ directory.
 
 # ENVIRONMENT VARIABLES
 
-**FPM_FC**
+**FPM_FC**  
+sets the path to the Fortran compiler used for the build, will be
+overwritten by **--compiler command line option**
 
-:   sets the path to the Fortran compiler used for the build, will be
-    overwritten by **--compiler command line option**
+**FPM_FFLAGS**  
+sets the arguments for the Fortran compiler will be overwritten by
+**--flag command line option**
 
-**FPM_FFLAGS**
+**FPM_CC**  
+sets the path to the C compiler used for the build, will be overwritten
+by **--c-compiler command line option**
 
-:   sets the arguments for the Fortran compiler will be overwritten by
-    **--flag command line option**
+**FPM_CFLAGS**  
+sets the arguments for the C compiler will be overwritten by **--c-flag
+command line option**
 
-**FPM_CC**
+**FPM_CXX**  
+sets the path to the C++ compiler used for the build, will be
+overwritten by **--cxx-compiler command line option**
 
-:   sets the path to the C compiler used for the build, will be
-    overwritten by **--c-compiler command line option**
+**FPM_CXXFLAGS**  
+sets the arguments for the C++ compiler will be overwritten by
+**--cxx-flag command line option**
 
-**FPM_CFLAGS**
+**FPM_AR**  
+sets the path to the archiver used for the build, will be overwritten by
+**--archiver command line option**
 
-:   sets the arguments for the C compiler will be overwritten by
-    **--c-flag command line option**
-
-**FPM_CXX**
-
-:   sets the path to the C++ compiler used for the build, will be
-    overwritten by **--cxx-compiler command line option**
-
-**FPM_CXXFLAGS**
-
-:   sets the arguments for the C++ compiler will be overwritten by
-    **--cxx-flag command line option**
-
-**FPM_AR**
-
-:   sets the path to the archiver used for the build, will be
-    overwritten by **--archiver command line option**
-
-**FPM_LDFLAGS**
-
-:   sets additional link arguments for creating executables will be
-    overwritten by **--link-flag command line option**
+**FPM_LDFLAGS**  
+sets additional link arguments for creating executables will be
+overwritten by **--link-flag command line option**
 
 # EXAMPLES
 
@@ -256,13 +228,13 @@ sample commands:
 
 # SEE ALSO
 
--   The **fpm(1) home page is at https://github.com/fortran-lang/fpm**
+- The **fpm(1) home page is at https://github.com/fortran-lang/fpm**
 
--   Registered **fpm(1) packages are at
-    https://fortran-lang.org/packages**
+- Registered **fpm(1) packages are at
+  https://fortran-lang.org/packages**
 
--   The **fpm(1) TOML file format is described at**
-    https://fpm.fortran-lang.org/spec/manifest.html
+- The **fpm(1) TOML file format is described at**
+  https://fpm.fortran-lang.org/spec/manifest.html
 
 # NAME
 
@@ -281,13 +253,13 @@ directory.**
 
 It
 
-> -   creates a directory with the specified name
+> - creates a directory with the specified name
 >
-> -   runs the command "git init" in that directory
+> - runs the command "git init" in that directory
 >
-> -   populates the directory with the default project directories
+> - populates the directory with the default project directories
 >
-> -   adds sample Fortran source files
+> - adds sample Fortran source files
 
 The default file structure (that will be automatically scanned) is
 
@@ -315,71 +287,61 @@ your name and e-mail address.
 
 # OPTIONS
 
-***NAME***
-
-:   the name of the project directory to create. The name must be made
-    of up to 63 ASCII letters, digits, underscores, or hyphens, and
-    start with a letter.
+***NAME***  
+the name of the project directory to create. The name must be made of up
+to 63 ASCII letters, digits, underscores, or hyphens, and start with a
+letter.
 
 The default is to create the src/, app/, and test/ directories. If any
 of the following options are specified then only the selected
 subdirectories are generated:
 
-****--lib,--src****
+****--lib,--src****  
+create directory src/ and a placeholder module named "NAME.f90" for use
+with subcommand "build".
 
-:   create directory src/ and a placeholder module named "NAME.f90" for
-    use with subcommand "build".
+****--app****  
+create directory app/ and a placeholder main program for use with
+subcommand "run".
 
-****--app****
+****--test****  
+create directory test/ and a placeholder program for use with the
+subcommand "test". Note that sans "**--lib" it really does not have
+anything to test.**
 
-:   create directory app/ and a placeholder main program for use with
-    subcommand "run".
-
-****--test****
-
-:   create directory test/ and a placeholder program for use with the
-    subcommand "test". Note that sans "**--lib" it really does not have
-    anything to test.**
-
-****--example****
-
-:   create directory example/ and a placeholder program for use with the
-    subcommand "run **--example".** It is only created by default if
-    "**--full is" specified.**
+****--example****  
+create directory example/ and a placeholder program for use with the
+subcommand "run **--example".** It is only created by default if
+"**--full is" specified.**
 
 So the default is equivalent to
 
         fpm NAME --lib --app --test
 
-****--backfill****
+****--backfill****  
+By default the directory must not exist. If this option is present the
+directory may pre-exist and only subdirectories and files that do not
+already exist will be created. For example, if you previously entered
+"**fpm** *new* **myname --lib" entering** "**fpm** *new* **myname -full
+--backfill" will create any missing** app/, example/, and test/
+directories and programs.
 
-:   By default the directory must not exist. If this option is present
-    the directory may pre-exist and only subdirectories and files that
-    do not already exist will be created. For example, if you previously
-    entered "**fpm** *new* **myname --lib" entering** "**fpm** *new*
-    **myname -full --backfill" will create any missing** app/, example/,
-    and test/ directories and programs.
+****--full****  
+By default a minimal manifest file ("fpm.toml") is created that depends
+on auto-discovery. With this option a much more extensive manifest
+sample is written and the example/ directory is created and populated.
+It is designed to facilitate creating projects that depend extensively
+on non-default build options.
 
-****--full****
+****--bare****  
+A minimal manifest file ("fpm.toml") is created and "README.md" file is
+created but no directories or sample Fortran are generated.
 
-:   By default a minimal manifest file ("fpm.toml") is created that
-    depends on auto-discovery. With this option a much more extensive
-    manifest sample is written and the example/ directory is created and
-    populated. It is designed to facilitate creating projects that
-    depend extensively on non-default build options.
+****--help****  
+print this help and exit
 
-****--bare****
-
-:   A minimal manifest file ("fpm.toml") is created and "README.md" file
-    is created but no directories or sample Fortran are generated.
-
-****--help****
-
-:   print this help and exit
-
-****--version****
-
-:   print program version information and exit
+****--version****  
+print program version information and exit
 
 # EXAMPLES
 
@@ -413,145 +375,123 @@ Sample use
 
 The "**fpm** *build***" command**
 
-> -   Fetches any dependencies
+> - Fetches any dependencies
 >
-> -   Scans your sources
+> - Scans your sources
 >
-> -   Builds them in the proper order
+> - Builds them in the proper order
 
 The Fortran source files are assumed by default to be in
 
-> -   src/ for modules and procedure source
+> - src/ for modules and procedure source
 >
-> -   app/ main **program(s) for applications**
+> - app/ main **program(s) for applications**
 >
-> -   test/ main **program(s) and support files for project tests**
+> - test/ main **program(s) and support files for project tests**
 >
-> -   example/ main **program(s) for example programs** Changed or *new*
->     **files found are rebuilt. The results are placed in** the
->     *build***/ directory.**
+> - example/ main **program(s) for example programs** Changed or *new*
+>   **files found are rebuilt. The results are placed in** the
+>   *build***/ directory.**
 
 Non-default pathnames and remote dependencies are used if specified in
 the "fpm.toml" file.
 
 # OPTIONS
 
-****--profile** *PROF***
+****--profile** *PROF***  
+Selects the compilation profile for the *build***.** Currently available
+profiles are "release" for high optimization and "debug" for full debug
+options. If **--flag is not specified the "debug" flags are the**
+default.
 
-:   Selects the compilation profile for the *build***.** Currently
-    available profiles are "release" for high optimization and "debug"
-    for full debug options. If **--flag is not specified the "debug"
-    flags are the** default.
+****--no-prune****  
+Disable tree-shaking/pruning of unused module dependencies
 
-****--no-prune****
+****--compiler** *NAME***  
+Specify a compiler name. The default is "gfortran" unless set by the
+environment variable FPM_FC.
 
-:   Disable tree-shaking/pruning of unused module dependencies
+****--c-compiler** *NAME***  
+Specify the C compiler name. Automatically determined by default unless
+set by the environment variable FPM_CC.
 
-****--compiler** *NAME***
+****--cxx-compiler** *NAME***  
+Specify the C++ compiler name. Automatically determined by default
+unless set by the environment variable FPM_CXX.
 
-:   Specify a compiler name. The default is "gfortran" unless set by the
-    environment variable FPM_FC.
+****--archiver** *NAME***  
+Specify the archiver name. Automatically determined by default unless
+set by the environment variable FPM_AR.
 
-****--c-compiler** *NAME***
+****--flag****  
+*FFLAGS* **selects compile arguments for the** *build***, the default
+value is** set by the FPM_FFLAGS environment variable. These are added
+to the profile options if **--profile is specified, else these** are
+added to the defaults. To override the defaults, use the keyword
+\[fortran\] in the manifest. Note object and .mod directory locations
+are always built in.
 
-:   Specify the C compiler name. Automatically determined by default
-    unless set by the environment variable FPM_CC.
+****--c-flag** CFLAGS**  
+selects compile arguments specific for C source in the *build***.** The
+default value is set by the FPM_CFLAGS environment variable.
+**--cxx-flag CFLAGS selects compile arguments specific for C++ source in
+the** *build***. The default value is set by the FPM_CXXFLAGS**
+environment variable.
 
-****--cxx-compiler** *NAME***
+****--link-flag** LDFLAGS**  
+select arguments passed to the linker for the *build***. The** default
+value is set by the FPM_LDFLAGS environment variable.
 
-:   Specify the C++ compiler name. Automatically determined by default
-    unless set by the environment variable FPM_CXX.
+****--list****  
+list candidates instead of building or running them
 
-****--archiver** *NAME***
+****--tests****  
+*build* **all tests (otherwise only if needed)**
 
-:   Specify the archiver name. Automatically determined by default
-    unless set by the environment variable FPM_AR.
+****--show-model****  
+show the model and exit (do not *build***)** **--dump \[FILENAME\] save
+model representation to file. use JSON format** if file name is \*.json;
+use TOML format otherwise (default file name: model.toml)
 
-****--flag****
+****--help****  
+print this help and exit
 
-:   *FFLAGS* **selects compile arguments for the** *build***, the
-    default value is** set by the FPM_FFLAGS environment variable. These
-    are added to the profile options if **--profile is specified, else
-    these** are added to the defaults. To override the defaults, use the
-    keyword \[fortran\] in the manifest. Note object and .mod directory
-    locations are always built in.
-
-****--c-flag** CFLAGS**
-
-:   selects compile arguments specific for C source in the *build***.**
-    The default value is set by the FPM_CFLAGS environment variable.
-    **--cxx-flag CFLAGS selects compile arguments specific for C++
-    source in the** *build***. The default value is set by the
-    FPM_CXXFLAGS** environment variable.
-
-****--link-flag** LDFLAGS**
-
-:   select arguments passed to the linker for the *build***. The**
-    default value is set by the FPM_LDFLAGS environment variable.
-
-****--list****
-
-:   list candidates instead of building or running them
-
-****--tests****
-
-:   *build* **all tests (otherwise only if needed)**
-
-****--show-model****
-
-:   show the model and exit (do not *build***)** **--dump \[FILENAME\]
-    save model representation to file. use JSON format** if file name is
-    \*.json; use TOML format otherwise (default file name: model.toml)
-
-****--help****
-
-:   print this help and exit
-
-****--version****
-
-:   print program version information and exit
+****--version****  
+print program version information and exit
 
 # ENVIRONMENT VARIABLES
 
-**FPM_FC**
+**FPM_FC**  
+sets the path to the Fortran compiler used for the *build***,** will be
+overwritten by **--compiler command line option**
 
-:   sets the path to the Fortran compiler used for the *build***,** will
-    be overwritten by **--compiler command line option**
+**FPM_FFLAGS**  
+sets the arguments for the Fortran compiler will be overwritten by
+**--flag command line option**
 
-**FPM_FFLAGS**
+**FPM_CC**  
+sets the path to the C compiler used for the *build***,** will be
+overwritten by **--c-compiler command line option**
 
-:   sets the arguments for the Fortran compiler will be overwritten by
-    **--flag command line option**
+**FPM_CFLAGS**  
+sets the arguments for the C compiler will be overwritten by **--c-flag
+command line option**
 
-**FPM_CC**
+**FPM_CXX**  
+sets the path to the C++ compiler used for the *build***,** will be
+overwritten by **--cxx-compiler command line option**
 
-:   sets the path to the C compiler used for the *build***,** will be
-    overwritten by **--c-compiler command line option**
+**FPM_CXXFLAGS**  
+sets the arguments for the C++ compiler will be overwritten by
+**--cxx-flag command line option**
 
-**FPM_CFLAGS**
+**FPM_AR**  
+sets the path to the archiver used for the *build***,** will be
+overwritten by **--archiver command line option**
 
-:   sets the arguments for the C compiler will be overwritten by
-    **--c-flag command line option**
-
-**FPM_CXX**
-
-:   sets the path to the C++ compiler used for the *build***,** will be
-    overwritten by **--cxx-compiler command line option**
-
-**FPM_CXXFLAGS**
-
-:   sets the arguments for the C++ compiler will be overwritten by
-    **--cxx-flag command line option**
-
-**FPM_AR**
-
-:   sets the path to the archiver used for the *build***,** will be
-    overwritten by **--archiver command line option**
-
-**FPM_LDFLAGS**
-
-:   sets additional link arguments for creating executables will be
-    overwritten by **--link-flag command line option**
+**FPM_LDFLAGS**  
+sets additional link arguments for creating executables will be
+overwritten by **--link-flag command line option**
 
 # EXAMPLES
 
@@ -582,135 +522,110 @@ are automatically rebuilt before being run if they are out of date.
 
 # OPTIONS
 
-****--target** *NAME***(***s***)****
+****--target** *NAME***(***s***)****  
+list of application names to execute. No name is required if only one
+target exists. If no name is supplied and more than one candidate exists
+or a name has no match a list is produced and **fpm(1)** exits.
 
-:   list of application names to execute. No name is required if only
-    one target exists. If no name is supplied and more than one
-    candidate exists or a name has no match a list is produced and
-    **fpm(1)** exits.
+Basic "globbing" is supported where "?" represents any single character
+and "\*" represents any string. Note The glob string normally needs
+quoted to the special characters from shell expansion.
 
-    Basic "globbing" is supported where "?" represents any single
-    character and "\*" represents any string. Note The glob string
-    normally needs quoted to the special characters from shell
-    expansion.
+****--all****  
+Run all examples or applications. An alias for **--target '\*'.**
 
-****--all****
+****--example****  
+Run example programs instead of applications.
 
-:   Run all examples or applications. An alias for **--target '\*'.**
+****--profile** *PROF***  
+Selects the compilation profile for the *build***.** Currently available
+profiles are "release" for high optimization and "debug" for full debug
+options. If **--flag is not specified the "debug" flags are the**
+default.
 
-****--example****
+****--no-prune****  
+Disable tree-shaking/pruning of unused module dependencies
 
-:   Run example programs instead of applications.
+****--compiler** *NAME***  
+Specify a compiler name. The default is "gfortran" unless set by the
+environment variable FPM_FC.
 
-****--profile** *PROF***
+****--c-compiler** *NAME***  
+Specify the C compiler name. Automatically determined by default unless
+set by the environment variable FPM_CC.
 
-:   Selects the compilation profile for the *build***.** Currently
-    available profiles are "release" for high optimization and "debug"
-    for full debug options. If **--flag is not specified the "debug"
-    flags are the** default.
+****--cxx-compiler** *NAME***  
+Specify the C++ compiler name. Automatically determined by default
+unless set by the environment variable FPM_CXX.
 
-****--no-prune****
+****--archiver** *NAME***  
+Specify the archiver name. Automatically determined by default unless
+set by the environment variable FPM_AR.
 
-:   Disable tree-shaking/pruning of unused module dependencies
+****--flag****  
+*FFLAGS* **selects compile arguments for the** *build***, the default
+value is** set by the FPM_FFLAGS environment variable. These are added
+to the profile options if **--profile is specified, else these** are
+added to the defaults. To override the defaults, use the keyword
+\[fortran\] in the manifest. Note object and .mod directory locations
+are always built in.
 
-****--compiler** *NAME***
+****--c-flag** CFLAGS**  
+selects compile arguments specific for C source in the *build***.** The
+default value is set by the FPM_CFLAGS environment variable.
+**--cxx-flag CFLAGS selects compile arguments specific for C++ source in
+the** *build***. The default value is set by the FPM_CXXFLAGS**
+environment variable.
 
-:   Specify a compiler name. The default is "gfortran" unless set by the
-    environment variable FPM_FC.
+****--link-flag** LDFLAGS**  
+select arguments passed to the linker for the *build***. The** default
+value is set by the FPM_LDFLAGS environment variable.
 
-****--c-compiler** *NAME***
+****--runner** CMD**  
+A command to prefix the program execution paths with. see "**fpm help
+runner" for further details.**
 
-:   Specify the C compiler name. Automatically determined by default
-    unless set by the environment variable FPM_CC.
+****--list****  
+list basenames of candidates instead of running them. Note out-of-date
+candidates will still be rebuilt before being listed.
 
-****--cxx-compiler** *NAME***
-
-:   Specify the C++ compiler name. Automatically determined by default
-    unless set by the environment variable FPM_CXX.
-
-****--archiver** *NAME***
-
-:   Specify the archiver name. Automatically determined by default
-    unless set by the environment variable FPM_AR.
-
-****--flag****
-
-:   *FFLAGS* **selects compile arguments for the** *build***, the
-    default value is** set by the FPM_FFLAGS environment variable. These
-    are added to the profile options if **--profile is specified, else
-    these** are added to the defaults. To override the defaults, use the
-    keyword \[fortran\] in the manifest. Note object and .mod directory
-    locations are always built in.
-
-****--c-flag** CFLAGS**
-
-:   selects compile arguments specific for C source in the *build***.**
-    The default value is set by the FPM_CFLAGS environment variable.
-    **--cxx-flag CFLAGS selects compile arguments specific for C++
-    source in the** *build***. The default value is set by the
-    FPM_CXXFLAGS** environment variable.
-
-****--link-flag** LDFLAGS**
-
-:   select arguments passed to the linker for the *build***. The**
-    default value is set by the FPM_LDFLAGS environment variable.
-
-****--runner** CMD**
-
-:   A command to prefix the program execution paths with. see "**fpm
-    help runner" for further details.**
-
-****--list****
-
-:   list basenames of candidates instead of running them. Note
-    out-of-date candidates will still be rebuilt before being listed.
-
-**-- ARGS**
-
-:   optional arguments to pass to the **program(***s***). The same**
-    arguments are passed to all program names specified.
+**-- ARGS**  
+optional arguments to pass to the **program(***s***). The same**
+arguments are passed to all program names specified.
 
 # ENVIRONMENT VARIABLES
 
-**FPM_FC**
+**FPM_FC**  
+sets the path to the Fortran compiler used for the *build***,** will be
+overwritten by **--compiler command line option**
 
-:   sets the path to the Fortran compiler used for the *build***,** will
-    be overwritten by **--compiler command line option**
+**FPM_FFLAGS**  
+sets the arguments for the Fortran compiler will be overwritten by
+**--flag command line option**
 
-**FPM_FFLAGS**
+**FPM_CC**  
+sets the path to the C compiler used for the *build***,** will be
+overwritten by **--c-compiler command line option**
 
-:   sets the arguments for the Fortran compiler will be overwritten by
-    **--flag command line option**
+**FPM_CFLAGS**  
+sets the arguments for the C compiler will be overwritten by **--c-flag
+command line option**
 
-**FPM_CC**
+**FPM_CXX**  
+sets the path to the C++ compiler used for the *build***,** will be
+overwritten by **--cxx-compiler command line option**
 
-:   sets the path to the C compiler used for the *build***,** will be
-    overwritten by **--c-compiler command line option**
+**FPM_CXXFLAGS**  
+sets the arguments for the C++ compiler will be overwritten by
+**--cxx-flag command line option**
 
-**FPM_CFLAGS**
+**FPM_AR**  
+sets the path to the archiver used for the *build***,** will be
+overwritten by **--archiver command line option**
 
-:   sets the arguments for the C compiler will be overwritten by
-    **--c-flag command line option**
-
-**FPM_CXX**
-
-:   sets the path to the C++ compiler used for the *build***,** will be
-    overwritten by **--cxx-compiler command line option**
-
-**FPM_CXXFLAGS**
-
-:   sets the arguments for the C++ compiler will be overwritten by
-    **--cxx-flag command line option**
-
-**FPM_AR**
-
-:   sets the path to the archiver used for the *build***,** will be
-    overwritten by **--archiver command line option**
-
-**FPM_LDFLAGS**
-
-:   sets additional link arguments for creating executables will be
-    overwritten by **--link-flag command line option**
+**FPM_LDFLAGS**  
+sets additional link arguments for creating executables will be
+overwritten by **--link-flag command line option**
 
 # EXAMPLES
 
@@ -756,17 +671,14 @@ cache.**
 
 # OPTIONS
 
-****--skip****
+****--skip****  
+Delete the *build* **without prompting but skip dependencies.**
 
-:   Delete the *build* **without prompting but skip dependencies.**
+****--all****  
+Delete the *build* **without prompting including dependencies.**
 
-****--all****
-
-:   Delete the *build* **without prompting including dependencies.**
-
-****--registry-cache****
-
-:   Delete registry cache.
+****--registry-cache****  
+Delete registry cache.
 
 # NAME
 
@@ -785,129 +697,105 @@ Run applications you have built to test your project.
 
 # OPTIONS
 
-****--target** *NAME***(***s***)****
+****--target** *NAME***(***s***)****  
+optional list of specific test names to execute. The default is to run
+all the tests in test/ or the tests listed in the "fpm.toml" file.
 
-:   optional list of specific test names to execute. The default is to
-    run all the tests in test/ or the tests listed in the "fpm.toml"
-    file.
+Basic "globbing" is supported where "?" represents any single character
+and "\*" represents any string. Note The glob string normally needs
+quoted to protect the special characters from shell expansion.
 
-    Basic "globbing" is supported where "?" represents any single
-    character and "\*" represents any string. Note The glob string
-    normally needs quoted to protect the special characters from shell
-    expansion.
+****--profile** *PROF***  
+Selects the compilation profile for the *build***.** Currently available
+profiles are "release" for high optimization and "debug" for full debug
+options. If **--flag is not specified the "debug" flags are the**
+default.
 
-****--profile** *PROF***
+****--no-prune****  
+Disable tree-shaking/pruning of unused module dependencies
 
-:   Selects the compilation profile for the *build***.** Currently
-    available profiles are "release" for high optimization and "debug"
-    for full debug options. If **--flag is not specified the "debug"
-    flags are the** default.
+****--compiler** *NAME***  
+Specify a compiler name. The default is "gfortran" unless set by the
+environment variable FPM_FC.
 
-****--no-prune****
+****--c-compiler** *NAME***  
+Specify the C compiler name. Automatically determined by default unless
+set by the environment variable FPM_CC.
 
-:   Disable tree-shaking/pruning of unused module dependencies
+****--cxx-compiler** *NAME***  
+Specify the C++ compiler name. Automatically determined by default
+unless set by the environment variable FPM_CXX.
 
-****--compiler** *NAME***
+****--archiver** *NAME***  
+Specify the archiver name. Automatically determined by default unless
+set by the environment variable FPM_AR.
 
-:   Specify a compiler name. The default is "gfortran" unless set by the
-    environment variable FPM_FC.
+****--flag****  
+*FFLAGS* **selects compile arguments for the** *build***, the default
+value is** set by the FPM_FFLAGS environment variable. These are added
+to the profile options if **--profile is specified, else these** are
+added to the defaults. To override the defaults, use the keyword
+\[fortran\] in the manifest. Note object and .mod directory locations
+are always built in.
 
-****--c-compiler** *NAME***
+****--c-flag** CFLAGS**  
+selects compile arguments specific for C source in the *build***.** The
+default value is set by the FPM_CFLAGS environment variable.
+**--cxx-flag CFLAGS selects compile arguments specific for C++ source in
+the** *build***. The default value is set by the FPM_CXXFLAGS**
+environment variable.
 
-:   Specify the C compiler name. Automatically determined by default
-    unless set by the environment variable FPM_CC.
+****--link-flag** LDFLAGS**  
+select arguments passed to the linker for the *build***. The** default
+value is set by the FPM_LDFLAGS environment variable.
 
-****--cxx-compiler** *NAME***
+****--runner** CMD**  
+A command to prefix the program execution paths with. see "**fpm help
+runner" for further details.**
 
-:   Specify the C++ compiler name. Automatically determined by default
-    unless set by the environment variable FPM_CXX.
+****--list****  
+list candidate basenames instead of running them. Note they
 
-****--archiver** *NAME***
+****--list****  
+will still be built if not currently up to date.
 
-:   Specify the archiver name. Automatically determined by default
-    unless set by the environment variable FPM_AR.
-
-****--flag****
-
-:   *FFLAGS* **selects compile arguments for the** *build***, the
-    default value is** set by the FPM_FFLAGS environment variable. These
-    are added to the profile options if **--profile is specified, else
-    these** are added to the defaults. To override the defaults, use the
-    keyword \[fortran\] in the manifest. Note object and .mod directory
-    locations are always built in.
-
-****--c-flag** CFLAGS**
-
-:   selects compile arguments specific for C source in the *build***.**
-    The default value is set by the FPM_CFLAGS environment variable.
-    **--cxx-flag CFLAGS selects compile arguments specific for C++
-    source in the** *build***. The default value is set by the
-    FPM_CXXFLAGS** environment variable.
-
-****--link-flag** LDFLAGS**
-
-:   select arguments passed to the linker for the *build***. The**
-    default value is set by the FPM_LDFLAGS environment variable.
-
-****--runner** CMD**
-
-:   A command to prefix the program execution paths with. see "**fpm
-    help runner" for further details.**
-
-****--list****
-
-:   list candidate basenames instead of running them. Note they
-
-****--list****
-
-:   will still be built if not currently up to date.
-
-**-- ARGS**
-
-:   optional arguments to pass to the test **program(***s***).** The
-    same arguments are passed to all test names specified.
+**-- ARGS**  
+optional arguments to pass to the test **program(***s***).** The same
+arguments are passed to all test names specified.
 
 # ENVIRONMENT VARIABLES
 
-**FPM_FC**
+**FPM_FC**  
+sets the path to the Fortran compiler used for the *build***,** will be
+overwritten by **--compiler command line option**
 
-:   sets the path to the Fortran compiler used for the *build***,** will
-    be overwritten by **--compiler command line option**
+**FPM_FFLAGS**  
+sets the arguments for the Fortran compiler will be overwritten by
+**--flag command line option**
 
-**FPM_FFLAGS**
+**FPM_CC**  
+sets the path to the C compiler used for the *build***,** will be
+overwritten by **--c-compiler command line option**
 
-:   sets the arguments for the Fortran compiler will be overwritten by
-    **--flag command line option**
+**FPM_CFLAGS**  
+sets the arguments for the C compiler will be overwritten by **--c-flag
+command line option**
 
-**FPM_CC**
+**FPM_CXX**  
+sets the path to the C++ compiler used for the *build***,** will be
+overwritten by **--cxx-compiler command line option**
 
-:   sets the path to the C compiler used for the *build***,** will be
-    overwritten by **--c-compiler command line option**
+**FPM_CXXFLAGS**  
+sets the arguments for the C++ compiler will be overwritten by
+**--cxx-flag command line option**
 
-**FPM_CFLAGS**
+**FPM_AR**  
+sets the path to the archiver used for the *build***,** will be
+overwritten by **--archiver command line option**
 
-:   sets the arguments for the C compiler will be overwritten by
-    **--c-flag command line option**
-
-**FPM_CXX**
-
-:   sets the path to the C++ compiler used for the *build***,** will be
-    overwritten by **--cxx-compiler command line option**
-
-**FPM_CXXFLAGS**
-
-:   sets the arguments for the C++ compiler will be overwritten by
-    **--cxx-flag command line option**
-
-**FPM_AR**
-
-:   sets the path to the archiver used for the *build***,** will be
-    overwritten by **--archiver command line option**
-
-**FPM_LDFLAGS**
-
-:   sets additional link arguments for creating executables will be
-    overwritten by **--link-flag command line option**
+**FPM_LDFLAGS**  
+sets additional link arguments for creating executables will be
+overwritten by **--link-flag command line option**
 
 # EXAMPLES
 
@@ -945,22 +833,19 @@ from platform to platform or require independent installation.
 
 # OPTION
 
-****--runner** '*CMD***'****
+****--runner** '*CMD***'****  
+quoted command used to launch the **fpm(1) executables.** Available for
+both the "run" and "test" subcommands. If the keyword is specified
+without a value the default command is "echo".
 
-:   quoted command used to launch the **fpm(1) executables.** Available
-    for both the "run" and "test" subcommands. If the keyword is
-    specified without a value the default command is "echo".
+****--runner-args** args**  
+an additional option to pass command-line arguments to the runner
+command, instead of to the **fpm app.**
 
-****--runner-args** args**
-
-:   an additional option to pass command-line arguments to the runner
-    command, instead of to the **fpm app.**
-
-**-- *SUFFIX_OPTIONS***
-
-:   additional options to suffix the command *CMD* **and executable**
-    file names with. These options are passed as command-line arguments
-    to the app.
+**-- *SUFFIX_OPTIONS***  
+additional options to suffix the command *CMD* **and executable** file
+names with. These options are passed as command-line arguments to the
+app.
 
 # EXAMPLES
 
@@ -969,41 +854,41 @@ the following common GNU/Linux and Unix commands:
 
 ## INTERROGATE
 
--   nm - list symbols from object files
+- nm - list symbols from object files
 
--   size - list section sizes and total size.
+- size - list section sizes and total size.
 
--   ldd - print shared object dependencies
+- ldd - print shared object dependencies
 
--   ls - list directory contents
+- ls - list directory contents
 
--   stat - display file or file system status
+- stat - display file or file system status
 
--   file - determine file type
+- file - determine file type
 
 ## PERFORMANCE AND DEBUGGING
 
--   gdb - The GNU Debugger
+- gdb - The GNU Debugger
 
--   valgrind - a suite of tools for debugging and profiling
+- valgrind - a suite of tools for debugging and profiling
 
--   time - time a simple command or give resource usage
+- time - time a simple command or give resource usage
 
--   timeout - run a command with a time limit
+- timeout - run a command with a time limit
 
 ## COPY
 
--   install - copy files and set attributes
+- install - copy files and set attributes
 
--   tar - an archiving utility
+- tar - an archiving utility
 
 ## ALTER
 
--   rm - remove files or directories
+- rm - remove files or directories
 
--   chmod - change permissions of a file
+- chmod - change permissions of a file
 
--   strip - remove unnecessary information from strippable files
+- strip - remove unnecessary information from strippable files
 
 For example
 
@@ -1044,119 +929,96 @@ the package manifest.
 
 # OPTIONS
 
-****--list****
+****--list****  
+list all installable targets for this project, but do not *install*
+**any of them**
 
-:   list all installable targets for this project, but do not *install*
-    **any of them**
+****--profile** *PROF***  
+Selects the compilation profile for the *build***.** Currently available
+profiles are "release" for high optimization and "debug" for full debug
+options. If **--flag is not specified the "debug" flags are the**
+default.
 
-****--profile** *PROF***
+****--no-prune****  
+Disable tree-shaking/pruning of unused module dependencies
 
-:   Selects the compilation profile for the *build***.** Currently
-    available profiles are "release" for high optimization and "debug"
-    for full debug options. If **--flag is not specified the "debug"
-    flags are the** default.
+****--flag****  
+*FFLAGS* **selects compile arguments for the** *build***, the default
+value is** set by the FPM_FFLAGS environment variable. These are added
+to the profile options if **--profile is specified, else these** are
+added to the defaults. To override the defaults, use the keyword
+\[fortran\] in the manifest. Note object and .mod directory locations
+are always built in.
 
-****--no-prune****
+****--c-flag** CFLAGS**  
+selects compile arguments specific for C source in the *build***.** The
+default value is set by the FPM_CFLAGS environment variable.
+**--cxx-flag CFLAGS selects compile arguments specific for C++ source in
+the** *build***. The default value is set by the FPM_CXXFLAGS**
+environment variable.
 
-:   Disable tree-shaking/pruning of unused module dependencies
+****--link-flag** LDFLAGS**  
+select arguments passed to the linker for the *build***. The** default
+value is set by the FPM_LDFLAGS environment variable.
 
-****--flag****
+****--no-rebuild****  
+do not rebuild project before installation
 
-:   *FFLAGS* **selects compile arguments for the** *build***, the
-    default value is** set by the FPM_FFLAGS environment variable. These
-    are added to the profile options if **--profile is specified, else
-    these** are added to the defaults. To override the defaults, use the
-    keyword \[fortran\] in the manifest. Note object and .mod directory
-    locations are always built in.
+****--test****  
+also *install* **test programs**
 
-****--c-flag** CFLAGS**
+****--prefix** *DIR***  
+path to installation directory (requires write access), the default
+prefix on Unix systems is \$HOME/.local and %APPDATA%\local on Windows
 
-:   selects compile arguments specific for C source in the *build***.**
-    The default value is set by the FPM_CFLAGS environment variable.
-    **--cxx-flag CFLAGS selects compile arguments specific for C++
-    source in the** *build***. The default value is set by the
-    FPM_CXXFLAGS** environment variable.
+****--bindir** *DIR***  
+subdirectory to place executables in (default: bin)
 
-****--link-flag** LDFLAGS**
+****--libdir** *DIR***  
+subdirectory to place libraries and archives in (default: lib)
 
-:   select arguments passed to the linker for the *build***. The**
-    default value is set by the FPM_LDFLAGS environment variable.
+****--includedir** *DIR***  
+subdirectory to place headers and module files in (default: include)
 
-****--no-rebuild****
+****--testdir** *DIR***  
+subdirectory to place test programs in (default: test)
 
-:   do not rebuild project before installation
-
-****--test****
-
-:   also *install* **test programs**
-
-****--prefix** *DIR***
-
-:   path to installation directory (requires write access), the default
-    prefix on Unix systems is \$HOME/.local and %APPDATA%\local on
-    Windows
-
-****--bindir** *DIR***
-
-:   subdirectory to place executables in (default: bin)
-
-****--libdir** *DIR***
-
-:   subdirectory to place libraries and archives in (default: lib)
-
-****--includedir** *DIR***
-
-:   subdirectory to place headers and module files in (default: include)
-
-****--testdir** *DIR***
-
-:   subdirectory to place test programs in (default: test)
-
-****--verbose****
-
-:   print more information
+****--verbose****  
+print more information
 
 # ENVIRONMENT VARIABLES
 
-**FPM_FC**
+**FPM_FC**  
+sets the path to the Fortran compiler used for the *build***,** will be
+overwritten by **--compiler command line option**
 
-:   sets the path to the Fortran compiler used for the *build***,** will
-    be overwritten by **--compiler command line option**
+**FPM_FFLAGS**  
+sets the arguments for the Fortran compiler will be overwritten by
+**--flag command line option**
 
-**FPM_FFLAGS**
+**FPM_CC**  
+sets the path to the C compiler used for the *build***,** will be
+overwritten by **--c-compiler command line option**
 
-:   sets the arguments for the Fortran compiler will be overwritten by
-    **--flag command line option**
+**FPM_CFLAGS**  
+sets the arguments for the C compiler will be overwritten by **--c-flag
+command line option**
 
-**FPM_CC**
+**FPM_CXX**  
+sets the path to the C++ compiler used for the *build***,** will be
+overwritten by **--cxx-compiler command line option**
 
-:   sets the path to the C compiler used for the *build***,** will be
-    overwritten by **--c-compiler command line option**
+**FPM_CXXFLAGS**  
+sets the arguments for the C++ compiler will be overwritten by
+**--cxx-flag command line option**
 
-**FPM_CFLAGS**
+**FPM_AR**  
+sets the path to the archiver used for the *build***,** will be
+overwritten by **--archiver command line option**
 
-:   sets the arguments for the C compiler will be overwritten by
-    **--c-flag command line option**
-
-**FPM_CXX**
-
-:   sets the path to the C++ compiler used for the *build***,** will be
-    overwritten by **--cxx-compiler command line option**
-
-**FPM_CXXFLAGS**
-
-:   sets the arguments for the C++ compiler will be overwritten by
-    **--cxx-flag command line option**
-
-**FPM_AR**
-
-:   sets the path to the archiver used for the *build***,** will be
-    overwritten by **--archiver command line option**
-
-**FPM_LDFLAGS**
-
-:   sets additional link arguments for creating executables will be
-    overwritten by **--link-flag command line option**
+**FPM_LDFLAGS**  
+sets additional link arguments for creating executables will be
+overwritten by **--link-flag command line option**
 
 # EXAMPLES
 
@@ -1166,19 +1028,19 @@ the package manifest.
 
         fpm install --profile release
 
-1.  Install the project without rebuilding the executables:
+2.  Install the project without rebuilding the executables:
 
 <!-- -->
 
         fpm install --no-rebuild
 
-1.  Install executables to a custom prefix into the exe directory:
+3.  Install executables to a custom prefix into the exe directory:
 
 <!-- -->
 
         fpm install --prefix $PWD --bindir exe
 
-1.  Install executables and test programs into the same "exe" directory:
+4.  Install executables and test programs into the same "exe" directory:
 
 <!-- -->
 
@@ -1199,19 +1061,16 @@ provided all the dependencies are updated automatically.
 
 # OPTIONS
 
-****--fetch-only****
+****--fetch-only****  
+Only fetch dependencies, do not update existing projects
 
-:   Only fetch dependencies, do not update existing projects
+**--*clean***  
+Do not use previous dependency cache
 
-**--*clean***
-
-:   Do not use previous dependency cache
-
-****--verbose****
-
-:   Show additional printout **--dump \[FILENAME\] Dump updated
-    dependency tree to file. use JSON format** if file name is \*.json;
-    use TOML format otherwise (default file name: fpm_dependencies.toml)
+****--verbose****  
+Show additional printout **--dump \[FILENAME\] Dump updated dependency
+tree to file. use JSON format** if file name is \*.json; use TOML format
+otherwise (default file name: fpm_dependencies.toml)
 
 # SEE ALSO
 
@@ -1233,10 +1092,9 @@ Display a short description for each **fpm(1) subcommand.**
 
 # OPTIONS
 
-**--*list***
-
-:   display a *list* **of command options as well. This is the** same
-    output as generated by "**fpm --***list***".**
+**--*list***  
+display a *list* **of command options as well. This is the** same output
+as generated by "**fpm --***list***".**
 
 # EXAMPLES
 
@@ -1261,15 +1119,14 @@ The "*fpm* *help***" command is an alternative to the --***help*
 
 # OPTIONS
 
-****NAME(***s***)****
+****NAME(***s***)****  
+A *list* **of topic names to display. All the subcommands** have their
+own page (*new***,** *build***,** *run***,** *test***, ...).**
 
-:   A *list* **of topic names to display. All the subcommands** have
-    their own page (*new***,** *build***,** *run***,** *test***, ...).**
+The special name "*manual***" displays all the fpm(1)** built-in
+documentation.
 
-    The special name "*manual***" displays all the fpm(1)** built-in
-    documentation.
-
-    The default is to display *help* **for the fpm(1) command** itself.
+The default is to display *help* **for the fpm(1) command** itself.
 
 # EXAMPLES
 
@@ -1280,26 +1137,20 @@ Sample usage:
          fpm help new       # display help for "new" subcommand
          fpm help manual    # All fpm(1) built-in documentation
 
-**Version:**
+**Version:**  
+0.10.1, alpha
 
-:   0.10.1, alpha
+**Program:**  
+**fpm(1)** Description: A Fortran package manager and *build* **system**
 
-    **Program:**
+**Home Page:**  
+https://github.com/fortran-lang/*fpm*
 
-    :   **fpm(1)** Description: A Fortran package manager and *build*
-        **system**
+**License:**  
+MIT
 
-    **Home Page:**
-
-    :   https://github.com/fortran-lang/*fpm*
-
-    **License:**
-
-    :   MIT
-
-    **OS Type:**
-
-    :   Unknown
+**OS Type:**  
+Unknown
 
 # NAME
 
@@ -1341,44 +1192,34 @@ https://fpm.fortran-lang.org/spec/manifest.html#dependencies-from-a-registry
 
 # OPTIONS
 
-****--show-package-***version***
+****--show-package-***version***  
+show package *version* **without publishing**
 
-:   show package *version* **without publishing**
+****--show-upload-data****  
+show upload data without publishing
 
-****--show-upload-data****
+****--dry-***run***  
+perform dry *run* **without publishing**
 
-:   show upload data without publishing
+**--*help***  
+print this *help* **and exit**
 
-****--dry-***run***
+**--*version***  
+print program *version* **information and exit**
 
-:   perform dry *run* **without publishing**
-
-**--*help***
-
-:   print this *help* **and exit**
-
-**--*version***
-
-:   print program *version* **information and exit**
-
-****--verbose****
-
-:   print more information
+****--verbose****  
+print more information
 
 # EXAMPLES
 
-****fpm** *publish* **--show-package-***version***
+****fpm** *publish* **--show-package-***version***  
+\# show package *version* **without publishing**
 
-:   \# show package *version* **without publishing**
+****fpm** *publish* **--show-upload-data****  
+\# show upload data without publishing
 
-****fpm** *publish* **--show-upload-data****
+****fpm** *publish* **--token** *TOKEN* **--dry-***run***  
+\# perform dry *run* **without publishing**
 
-:   \# show upload data without publishing
-
-****fpm** *publish* **--token** *TOKEN* **--dry-***run***
-
-:   \# perform dry *run* **without publishing**
-
-****fpm** *publish* **--token** *TOKEN***
-
-:   \# upload package to the registry
+****fpm** *publish* **--token** *TOKEN***  
+\# upload package to the registry
