@@ -286,7 +286,7 @@ complex package structures.
 Remember to update the information in the sample "fpm.toml" file with
 your name and e-mail address.
 
-## OptionS
+## Options
 
 **NAME**  
 the name of the project directory to create. The name must be made of up
@@ -397,7 +397,7 @@ The Fortran source files are assumed by default to be in
 Non-default pathnames and remote dependencies are used if specified in
 the "fpm.toml" file.
 
-## OptionS
+## Options
 
 **--profile** **PROF**  
 Selects the compilation profile for the **build**.** Currently available
@@ -521,7 +521,7 @@ used. Alternatively demonstration programs in example/ or specified in
 the "example" section in "fpm.toml" can be executed. The applications
 are automatically rebuilt before being run if they are out of date.
 
-## OptionS
+## Options
 
 **--target** **NAME*(**s**)
 list of application names to execute. No name is required if only one
@@ -669,7 +669,7 @@ directories in the build/ directory are deleted, except
 dependencies. Use the **--registry-cache** option to delete the registry
 cache.
 
-## OptionS
+## Options
 
 **--skip**  
 Delete the *build* without prompting but skip dependencies.
@@ -695,7 +695,7 @@ Delete registry cache.
 
 Run applications you have built to test your project.
 
-## OptionS
+## Options
 
 **--target** **NAME**(**s**)
 optional list of specific test names to execute. The default is to run
@@ -927,7 +927,7 @@ which are part of the projects. Libraries and module files are only
 installed for projects requiring the installation of those components in
 the package manifest.
 
-## OptionS
+## Options
 
 **--list**  
 list all installable targets for this project, but do not *install*
@@ -1059,7 +1059,7 @@ overwritten by **--link-flag** command line option
 Manage and update project dependencies. If no dependency names are
 provided all the dependencies are updated automatically.
 
-## OptionS
+## Options
 
 **--fetch-only**
 Only fetch dependencies, do not update existing projects
@@ -1093,7 +1093,7 @@ The **fpm(1)** home page at https://github.com/fortran-lang/fpm
 
 Display a short description for each **fpm(1)** subcommand.
 
-## OptionS
+## Options
 
 **--list*  
 display a *list* of command options as well. This is the same output
@@ -1120,7 +1120,7 @@ display a short list of fpm(1) subcommands
 The "**fpm** **help**" command is an alternative to the **--help**
 parameter on the **fpm(1)** command and its subcommands.
 
-## OptionS
+## Options
 
 **NAME**(**s**)
 A *list* of topic names to display. All the subcommands have their
@@ -1178,7 +1178,7 @@ Package upload: https://fpm.fortran-lang.org/spec/publish.html
 Package usage:
 https://fpm.fortran-lang.org/spec/manifest.html#dependencies-from-a-registry
 
-## OptionS
+## Options
 
 **--show-package-version**  
 show package *version* **without publishing**
