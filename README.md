@@ -1137,21 +1137,6 @@ Sample usage:
          fpm help new       # display help for "new" subcommand
          fpm help manual    # All fpm(1) built-in documentation
 
-**Version:**  
-0.10.1, alpha
-
-**Program:**  
-**fpm(1)** Description: A Fortran package manager and *build* **system**
-
-**Home Page:**  
-https://github.com/fortran-lang/*fpm*
-
-**License:**  
-MIT
-
-**OS Type:**  
-Unknown
-
 # NAME
 
 **publish(1) - publish package to the registry**
@@ -1212,14 +1197,26 @@ print more information
 
 # EXAMPLES
 
-****fpm** *publish* **--show-package-***version***  
-\# show package *version* **without publishing**
+sample commands:
 
-****fpm** *publish* **--show-upload-data****  
-\# show upload data without publishing
+     fpm publish --show-package-version    # show package version without publishing
+     fpm publish --show-upload-data        # show upload data without publishing
+     fpm publish --token TOKEN --dry-run   # perform dry run without publishing
+     fpm publish --token TOKEN             # upload package to the registry
 
-****fpm** *publish* **--token** *TOKEN* **--dry-***run***  
-\# perform dry *run* **without publishing**
+# METADATA
 
-****fpm** *publish* **--token** *TOKEN***  
-\# upload package to the registry
+**Version:**  
+0.10.1, alpha
+
+**Program:**  
+**fpm(1)** Description: A Fortran package manager and *build* **system**
+
+**Home Page:**  
+https://github.com/fortran-lang/**fpm**
+
+**License:**  
+MIT
+
+**OS Type:**  
+Unknown
