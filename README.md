@@ -1,14 +1,14 @@
-# NAME
+## Name
 
 **fpm(1)** - A Fortran package manager and build system
 
-# SYNOPSIS
+## Synopsis
 
     fpm SUBCOMMAND [SUBCOMMAND_OPTIONS]
 
     fpm --help|--version|--list
 
-# DESCRIPTION
+## Description
 
 **fpm(1) is a package manager that helps you create Fortran projects**
 from source -- it automatically determines dependencies!
@@ -22,7 +22,7 @@ All output goes into the directory "build/" which can generally be
 removed and rebuilt if required. Note that if external packages are
 being used you need network connectivity to rebuild from scratch.
 
-# SUBCOMMANDS
+## Subcommands
 
 Valid **fpm(1) subcommands are:**
 
@@ -68,7 +68,7 @@ Their syntax is
         publish [--token TOKEN] [--show-package-version] [--show-upload-data]
                 [--dry-run] [--verbose]
 
-# SUBCOMMAND OPTIONS
+## Subcommand Options
 
 **-C, --directory PATH** Change working directory to PATH before running
 any command
@@ -137,7 +137,7 @@ dependencies. Cannot be used together with **--skip.**
 ****--registry-cache****  
 Delete registry cache.
 
-# VALID FOR ALL SUBCOMMANDS
+## Valid for All Subcommands
 
 ****--help****  
 Show help text and exit
@@ -178,7 +178,7 @@ directory.
 > (currently) allow for continued lines or multiple specifications of
 > the same option.
 
-# ENVIRONMENT VARIABLES
+## Environment Variables
 
 **FPM_FC**  
 sets the path to the Fortran compiler used for the build, will be
@@ -212,7 +212,7 @@ sets the path to the archiver used for the build, will be overwritten by
 sets additional link arguments for creating executables will be
 overwritten by **--link-flag command line option**
 
-# EXAMPLES
+## Examples
 
 sample commands:
 
@@ -226,7 +226,7 @@ sample commands:
         fpm install --prefix ~/.local
         fpm clean --all
 
-# SEE ALSO
+## See Also
 
 - The **fpm(1) home page is at https://github.com/fortran-lang/fpm**
 
@@ -236,17 +236,17 @@ sample commands:
 - The **fpm(1) TOML file format is described at**
   https://fpm.fortran-lang.org/spec/manifest.html
 
-# NAME
+## Name
 
 **new(1) - the fpm(1) subcommand to initialize a new project**
 
-# SYNOPSIS
+## Synopsis
 
     fpm new NAME [[--lib|--src] [--app] [--test] [--example]]|
     [--full|--bare][--backfill]
     fpm new --help|--version
 
-# DESCRIPTION
+## Description
 
 "**fpm** *new***" creates and populates a** *new* **programming project
 directory.**
@@ -285,7 +285,7 @@ complex package structures.
 Remember to update the information in the sample "fpm.toml" file with
 your name and e-mail address.
 
-# OPTIONS
+## OptionS
 
 ***NAME***  
 the name of the project directory to create. The name must be made of up
@@ -343,7 +343,7 @@ print this help and exit
 ****--version****  
 print program version information and exit
 
-# EXAMPLES
+## Examples
 
 Sample use
 
@@ -360,18 +360,18 @@ Sample use
        create any missing files in current directory
        fpm new --full --backfill
 
-# NAME
+## Name
 
 **build(1) - the fpm(1) subcommand to build a project**
 
-# SYNOPSIS
+## Synopsis
 
     fpm build [--profile PROF] [--flag FFLAGS] [--compiler COMPILER_NAME]
     [--list] [--tests] [--dump [FILENAME]]
 
     fpm build --help|--version
 
-# DESCRIPTION
+## Description
 
 The "**fpm** *build***" command**
 
@@ -396,7 +396,7 @@ The Fortran source files are assumed by default to be in
 Non-default pathnames and remote dependencies are used if specified in
 the "fpm.toml" file.
 
-# OPTIONS
+## OptionS
 
 ****--profile** *PROF***  
 Selects the compilation profile for the *build***.** Currently available
@@ -459,7 +459,7 @@ print this help and exit
 ****--version****  
 print program version information and exit
 
-# ENVIRONMENT VARIABLES
+## Environment Variables
 
 **FPM_FC**  
 sets the path to the Fortran compiler used for the *build***,** will be
@@ -493,18 +493,18 @@ overwritten by **--archiver command line option**
 sets additional link arguments for creating executables will be
 overwritten by **--link-flag command line option**
 
-# EXAMPLES
+## Examples
 
 Sample commands:
 
       fpm build                   # build with debug options
       fpm build --profile release # build with high optimization
 
-# NAME
+## Name
 
 **run(1) - the fpm(1) subcommand to run project applications**
 
-# SYNOPSIS
+## Synopsis
 
     fpm run [[--target] NAME(s) [--profile PROF] [--flag FFLAGS]
     [--compiler COMPILER_NAME] [--runner "CMD"] [--example]
@@ -512,7 +512,7 @@ Sample commands:
 
     fpm run --help|--version
 
-# DESCRIPTION
+## Description
 
 Run the applications in your **fpm(1) package. By default applications**
 in /app or specified as "executable" in your "fpm.toml" manifest are
@@ -520,7 +520,7 @@ used. Alternatively demonstration programs in example/ or specified in
 the "example" section in "fpm.toml" can be executed. The applications
 are automatically rebuilt before being run if they are out of date.
 
-# OPTIONS
+## OptionS
 
 ****--target** *NAME***(***s***)****  
 list of application names to execute. No name is required if only one
@@ -593,7 +593,7 @@ candidates will still be rebuilt before being listed.
 optional arguments to pass to the **program(***s***). The same**
 arguments are passed to all program names specified.
 
-# ENVIRONMENT VARIABLES
+## Environment Variables
 
 **FPM_FC**  
 sets the path to the Fortran compiler used for the *build***,** will be
@@ -627,7 +627,7 @@ overwritten by **--archiver command line option**
 sets additional link arguments for creating executables will be
 overwritten by **--link-flag command line option**
 
-# EXAMPLES
+## Examples
 
 **fpm(1) - run or display project applications:**
 
@@ -654,22 +654,22 @@ overwritten by **--link-flag command line option**
       # install executables in directory (assuming install(1) exists)
       fpm run --runner 'install -b -m 0711 -p -t /usr/local/bin'
 
-# NAME
+## Name
 
 **clean(1) - delete the** *build*
 
-# SYNOPSIS
+## Synopsis
 
     fpm clean
 
-# DESCRIPTION
+## Description
 
 Prompts the user to confirm deletion of the *build***. If affirmative,**
 directories in the *build***/ directory are deleted, except
 dependencies.** Use the **--registry-cache option to delete the registry
 cache.**
 
-# OPTIONS
+## OptionS
 
 ****--skip****  
 Delete the *build* **without prompting but skip dependencies.**
@@ -680,22 +680,22 @@ Delete the *build* **without prompting including dependencies.**
 ****--registry-cache****  
 Delete registry cache.
 
-# NAME
+## Name
 
 **test(1) - the fpm(1) subcommand to run project tests**
 
-# SYNOPSIS
+## Synopsis
 
     fpm test [[--target] NAME(s)] [--profile PROF] [--flag FFLAGS]
     [--compiler COMPILER_NAME ] [--runner "CMD"] [--list][-- ARGS]
 
     fpm test --help|--version
 
-# DESCRIPTION
+## Description
 
 Run applications you have built to test your project.
 
-# OPTIONS
+## OptionS
 
 ****--target** *NAME***(***s***)****  
 optional list of specific test names to execute. The default is to run
@@ -763,7 +763,7 @@ will still be built if not currently up to date.
 optional arguments to pass to the test **program(***s***).** The same
 arguments are passed to all test names specified.
 
-# ENVIRONMENT VARIABLES
+## Environment Variables
 
 **FPM_FC**  
 sets the path to the Fortran compiler used for the *build***,** will be
@@ -797,7 +797,7 @@ overwritten by **--archiver command line option**
 sets additional link arguments for creating executables will be
 overwritten by **--link-flag command line option**
 
-# EXAMPLES
+## Examples
 
 run tests
 
@@ -812,16 +812,16 @@ run tests
 
      fpm test tst1 tst2 --profile PROF  # run production version of two tests
 
-# NAME
+## Name
 
 **--runner(1) - a shared option for specifying an application to
 launch** **executables.**
 
-# SYNOPSIS
+## Synopsis
 
     fpm run|test --runner CMD ... --runner-args ARGS -- SUFFIX_OPTIONS
 
-# DESCRIPTION
+## Description
 
 The **--runner option allows specifying a program to launch**
 executables selected via the **fpm(1) subcommands "run" and "test".
@@ -831,7 +831,7 @@ tools that wrap other executables.
 These external commands are not part of **fpm(1) itself as they vary**
 from platform to platform or require independent installation.
 
-# OPTION
+## Option
 
 ****--runner** '*CMD***'****  
 quoted command used to launch the **fpm(1) executables.** Available for
@@ -847,12 +847,12 @@ additional options to suffix the command *CMD* **and executable** file
 names with. These options are passed as command-line arguments to the
 app.
 
-# EXAMPLES
+## Examples
 
 Use cases for '**fpm run\|test --runner "***CMD***"' include employing**
 the following common GNU/Linux and Unix commands:
 
-## INTERROGATE
+### Interrogate
 
 - nm - list symbols from object files
 
@@ -866,7 +866,7 @@ the following common GNU/Linux and Unix commands:
 
 - file - determine file type
 
-## PERFORMANCE AND DEBUGGING
+### Performance and Debugging
 
 - gdb - The GNU Debugger
 
@@ -876,13 +876,13 @@ the following common GNU/Linux and Unix commands:
 
 - timeout - run a command with a time limit
 
-## COPY
+### Copy
 
 - install - copy files and set attributes
 
 - tar - an archiving utility
 
-## ALTER
+### Alter
 
 - rm - remove files or directories
 
@@ -908,17 +908,17 @@ For example
       "fpm run --profile release --runner 'install -vbp -m 0711 -t ~/.local/bin'"
       fpm-install
 
-# NAME
+## Name
 
 **install(1) - install fpm projects**
 
-# SYNOPSIS
+## Synopsis
 
     fpm install [--profile PROF] [--flag FFLAGS] [--list] [--no-rebuild]
     [--prefix DIR] [--bindir DIR] [--libdir DIR] [--includedir DIR]
     [--verbose]
 
-# DESCRIPTION
+## Description
 
 Subcommand to *install* **fpm projects. Running** *install* **will
 export the** current project to the selected prefix, this will by
@@ -927,7 +927,7 @@ which are part of the projects. Libraries and module files are only
 installed for projects requiring the installation of those components in
 the package manifest.
 
-# OPTIONS
+## OptionS
 
 ****--list****  
 list all installable targets for this project, but do not *install*
@@ -986,7 +986,7 @@ subdirectory to place test programs in (default: test)
 ****--verbose****  
 print more information
 
-# ENVIRONMENT VARIABLES
+## Environment Variables
 
 **FPM_FC**  
 sets the path to the Fortran compiler used for the *build***,** will be
@@ -1020,7 +1020,7 @@ overwritten by **--archiver command line option**
 sets additional link arguments for creating executables will be
 overwritten by **--link-flag command line option**
 
-# EXAMPLES
+## Examples
 
 1.  Install release version of project:
 
@@ -1046,20 +1046,20 @@ overwritten by **--link-flag command line option**
 
         fpm install --prefix $PWD --test --bindir exe --testdir exe
 
-# NAME
+## Name
 
 **update(1) - manage project dependencies**
 
-# SYNOPSIS
+## Synopsis
 
     fpm update [--fetch-only] [--clean] [--verbose] [--dump [FILENAME]] [NAME(s)]
 
-# DESCRIPTION
+## Description
 
 Manage and update project dependencies. If no dependency names are
 provided all the dependencies are updated automatically.
 
-# OPTIONS
+## OptionS
 
 ****--fetch-only****  
 Only fetch dependencies, do not update existing projects
@@ -1072,52 +1072,52 @@ Show additional printout **--dump \[FILENAME\] Dump updated dependency
 tree to file. use JSON format** if file name is \*.json; use TOML format
 otherwise (default file name: fpm_dependencies.toml)
 
-# SEE ALSO
+## See Also
 
 The **fpm(1) home page at https://github.com/fortran-lang/fpm**
 
-# NAME
+## Name
 
 **list(1) - list summary of fpm(1) subcommands**
 
-# SYNOPSIS
+## Synopsis
 
     fpm list
 
     fpm list --help|--version
 
-# DESCRIPTION
+## Description
 
 Display a short description for each **fpm(1) subcommand.**
 
-# OPTIONS
+## OptionS
 
 **--*list***  
 display a *list* **of command options as well. This is the** same output
 as generated by "**fpm --***list***".**
 
-# EXAMPLES
+## Examples
 
 display a short *list* **of fpm(1) subcommands**
 
       fpm list
       fpm --list
 
-# NAME
+## Name
 
 **help(1) - the fpm(1) subcommand to display help**
 
-# SYNOPSIS
+## Synopsis
 
     fpm help [fpm] [new] [build] [run] [test] [help] [version] [manual]
     [runner]
 
-# DESCRIPTION
+## Description
 
 The "*fpm* *help***" command is an alternative to the --***help*
 **parameter** on the **fpm(1) command and its subcommands.**
 
-# OPTIONS
+## OptionS
 
 ****NAME(***s***)****  
 A *list* **of topic names to display. All the subcommands** have their
@@ -1128,7 +1128,7 @@ documentation.
 
 The default is to display *help* **for the fpm(1) command** itself.
 
-# EXAMPLES
+## Examples
 
 Sample usage:
 
@@ -1137,18 +1137,18 @@ Sample usage:
          fpm help new       # display help for "new" subcommand
          fpm help manual    # All fpm(1) built-in documentation
 
-# NAME
+## Name
 
 **publish(1) - publish package to the registry**
 
-# SYNOPSIS
+## Synopsis
 
     fpm publish [--token TOKEN] [--show-package-version] [--show-upload-data]
     [--dry-run] [--verbose]
 
     fpm publish --help|--version
 
-# DESCRIPTION
+## Description
 
 Follow the steps to create a tarball and upload a package to the
 registry:
@@ -1175,7 +1175,7 @@ Package upload: https://fpm.fortran-lang.org/spec/publish.html
 Package usage:
 https://fpm.fortran-lang.org/spec/manifest.html#dependencies-from-a-registry
 
-# OPTIONS
+## OptionS
 
 ****--show-package-***version***  
 show package *version* **without publishing**
@@ -1195,7 +1195,7 @@ print program *version* **information and exit**
 ****--verbose****  
 print more information
 
-# EXAMPLES
+## Examples
 
 sample commands:
 
@@ -1204,7 +1204,7 @@ sample commands:
      fpm publish --token TOKEN --dry-run   # perform dry run without publishing
      fpm publish --token TOKEN             # upload package to the registry
 
-# METADATA
+## Metadata
 
 **Version:**  
 0.10.1, alpha
