@@ -1181,19 +1181,19 @@ https://fpm.fortran-lang.org/spec/manifest.html#dependencies-from-a-registry
 ## Options
 
 **--show-package-version**  
-show package *version* **without publishing**
+show package version without publishing
 
 **--show-upload-data**
 show upload data without publishing
 
 **--dry-run**  
-perform dry *run* **without publishing**
+perform dry run without publishing
 
 **--help**  
-print this *help* **and exit**
+print this help **and exit**
 
 **--version**  
-print program *version* **information and exit**
+print program version information **and exit**
 
 **--verbose**  
 print more information
@@ -1209,17 +1209,8 @@ sample commands:
 
 ## Metadata
 
-**Version:**  
-0.10.1, alpha
-
-**Program:**  
-**fpm(1)** Description: A Fortran package manager and *build* **system**
-
-**Home Page:**  
-https://github.com/fortran-lang/**fpm**
-
-**License:**  
-MIT
-
-**OS Type:**  
-Unknown
+**Version:**    0.10.1, alpha
+**Program:**    **fpm(1)** Description: A Fortran package manager and build system
+**Home Page:**  https://github.com/fortran-lang/fpm
+**License:**    MIT
+**OS Type:**    Unknown
