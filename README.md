@@ -1209,8 +1209,10 @@ sample commands:
 
 ## Metadata
 
-| **Version:**   |0.10.1, alpha
-| **Program:**   |**fpm(1)** Description: A Fortran package manager and build system
-| **Home Page:** |https://github.com/fortran-lang/fpm
-| **License:**   |MIT
-| **OS Type:**   |Unknown
+| Key            | Description                                                        |
+|--------------- | ------------------------------------------------------------------ |
+| **Version:**   |0.10.1, alpha                                                       |
+| **Program:**   |**fpm(1)** Description: A Fortran package manager and build system  |
+| **Home Page:** |https://github.com/fortran-lang/fpm                                 |
+| **License:**   |MIT                                                                 |
+| **OS Type:**   |Unknown                                                             |
